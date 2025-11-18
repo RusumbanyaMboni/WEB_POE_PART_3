@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enquiry | Sweet Cravings Bakery</title>
+  <meta name="description" content="Send your enquiries or place custom bakery orders at Sweet Cravings Bakery.">
+  <meta name="keywords" content="bakery, cakes, pastries, Durban, sweet cravings, custom cake orders">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo"><img src="image/logo.png" alt="Sweet Cravings Bakery Logo" width="80" height="80"></a>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About</a> |
+      <a href="products.html">Products/Services</a> |
+      <a href="enquiry.html">Enquiry</a> |
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Order Enquiry Form</h1>
+    <p>Want to place a custom cake order? Fill in the form below with your details and we'll get back to you shortly.</p>
+
+    <form id="enquiryForm" style="max-width:600px;margin:20px auto;padding:20px;border:1px solid #ddd;border-radius:8px;">
+      
+      <!-- Personal Details -->
+      <fieldset style="border:none;margin-bottom:20px;">
+        <legend style="font-weight:bold;font-size:16px;margin-bottom:10px;">Your Details</legend>
+        
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required style="width:100%;padding:8px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;"><br>
+
+        <label for="email">Email Address:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required style="width:100%;padding:8px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;"><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required style="width:100%;padding:8px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;"><br>
+      </fieldset>
+
+      <!-- Order Details -->
+      <fieldset style="border:none;margin-bottom:20px;">
+        <legend style="font-weight:bold;font-size:16px;margin-bottom:10px;">Order Details</legend>
+
+        <label for="cakeType">Cake Type:</label><br>
+        <select id="cakeType" name="cakeType" required style="width:100%;padding:8px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;">
+          <option value="">-- Select a cake --</option>
+          <option value="Classic Chocolate Cake">Classic Chocolate Cake</option>
+          <option value="Red Velvet Cake">Red Velvet Cake</option>
+          <option value="Vanilla Cheesecake">Vanilla Cheesecake</option>
+          <option value="Strawberry Shortcake">Strawberry Shortcake</option>
+          <option value="Carrot Cake">Carrot Cake</option>
+          <option value="Other/Custom">Other/Custom Design</option>
+        </select><br>
+
+        <label for="cakeSize">Cake Size (Servings):</label><br>
+        <select id="cakeSize" name="cakeSize" required style="width:100%;padding:8px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;">
+          <option value="">-- Select size --</option>
+          <option value="Small (6-8 servings)">Small (6-8 servings)</option>
+          <option value="Medium (10-15 servings)">Medium (10-15 servings)</option>
+          <option value="Large (20-30 servings)">Large (20-30 servings)</option>
+          <option value="Extra Large (40+ servings)">Extra Large (40+ servings)</option>
+        </select><br>
+
+        <label for="deliveryDate">Desired Delivery Date:</label><br>
+        <input type="date" id="deliveryDate" name="deliveryDate" required style="width:100%;padding:8px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;"><br>
+
+        <label for="specialRequests">Special Requests / Customizations:</label><br>
+        <textarea id="specialRequests" name="specialRequests" rows="4" placeholder="Any special dietary requirements, flavors, decorations, or designs?" style="width:100%;padding:8px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;"></textarea><br>
+      </fieldset>
+
+      <fieldset style="border:none;margin-bottom:20px;">
+        <legend style="font-weight:bold;font-size:16px;margin-bottom:10px;">Allergies & Dietary Requirements</legend>
+
+        <label style="display:block;margin-bottom:8px;">
+          <input type="checkbox" name="allergen" value="Nuts"> Contains Nuts
+        </label>
+        <label style="display:block;margin-bottom:8px;">
+          <input type="checkbox" name="allergen" value="Dairy-Free"> Dairy-Free
+        </label>
+        <label style="display:block;margin-bottom:8px;">
+          <input type="checkbox" name="allergen" value="Gluten-Free"> Gluten-Free
+        </label>
+        <label style="display:block;margin-bottom:15px;">
+          <input type="checkbox" name="allergen" value="Vegan"> Vegan
+        </label>
+      </fieldset>
+
+      <button type="submit" style="background-color:#d4a574;color:white;padding:12px 30px;border:none;border-radius:5px;cursor:pointer;font-size:16px;width:100%;">Submit Order Enquiry</button>
+    </form>
+
+    <p style="text-align:center;margin-top:20px;color:#666;"><strong>Note:</strong> We'll review your enquiry and contact you within 24-48 hours to confirm details and pricing.</p>
+  </main>
+
+  <footer>
+    <p>© 2025 Sweet Cravings Bakery. All rights reserved.</p>
+  </footer>
+
+  <script>
+    window.addEventListener('load', function() {
+      const params = new URLSearchParams(window.location.search);
+      const productName = params.get('product');
+      
+      if (productName) {
+        document.getElementById('cakeType').value = productName;
+      }
+    });
+
+    document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        cakeType: document.getElementById('cakeType').value,
+        cakeSize: document.getElementById('cakeSize').value,
+        deliveryDate: document.getElementById('deliveryDate').value,
+        specialRequests: document.getElementById('specialRequests').value
+      };
+
+      alert('Thank you, ' + formData.name + '! Your order enquiry has been submitted. We will contact you shortly at ' + formData.email + ' or ' + formData.phone);
+      
+      this.reset();
+      
+      // Redirect to home after 2 seconds
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

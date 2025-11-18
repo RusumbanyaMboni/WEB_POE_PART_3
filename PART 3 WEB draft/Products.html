@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products/Services | Sweet Cravings Bakery</title>
+  <meta name="description" content="Our handcrafted cakes, breads, and pastries.">
+  <meta name="keywords" content="bakery, cakes, pastries, Durban, sweet cravings, custom cake orders">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo"><img src="image/logo.png" alt="Sweet Cravings Bakery Logo" width="80" height="80"></a>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About</a> |
+      <a href="products.html">Products/Services</a> |
+      <a href="enquiry.html">Enquiry</a> |
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Our Products & Services</h1>
+    <p>At Sweet Cravings Bakery, we specialise in handcrafted baked goods made with passion and quality ingredients.</p>
+
+    <!-- Product Search -->
+    <section class="search-section">
+      <input 
+        type="text" 
+        id="search" 
+        placeholder="🔍 Search for a product..."
+        style="padding:10px;width:100%;max-width:400px;border-radius:6px;margin-bottom:15px;border:1px solid #ccc;">
+    </section>
+
+    <div id="product-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin:20px 0;"></div>
+
+    <p><strong>Custom Orders:</strong> We also take special requests for events and corporate functions. Click on any cake to place your order!</p>
+  </main>
+
+  <footer>
+    <p>© 2025 Sweet Cravings Bakery. All rights reserved.</p>
+  </footer>
+
+  // ...existing code...
+  <script>
+    // Product Data with images
+    const products = [
+      {
+        id: 1,
+        name: "Classic Chocolate Cake",
+        description: "Rich, moist chocolate cake with creamy ganache frosting",
+        price: "R250",
+        image: "image/Classic%20Chocolate%20Cake.jpg"
+      },
+      {
+        id: 2,
+        name: "Red Velvet Cake",
+        description: "Elegant red velvet with cream cheese frosting",
+        price: "R280",
+        image: "image/Red%20Velvet%20Cake.jpeg"
+      },
+      {
+        id: 3,
+        name: "Vanilla Cheesecake",
+        description: "Creamy cheesecake with a buttery graham cracker base",
+        price: "R300",
+        image: "image/Cupcake-vanillee.png"
+      },
+      {
+        id: 4,
+        name: "Strawberry Shortcake",
+        description: "Light sponge cake layered with fresh strawberries and whipped cream",
+        price: "R270",
+        image: "image/strawberry_cupcake.jpg"
+      },
+      {
+        id: 5,
+        name: "Carrot Cake",
+        description: "Moist carrot cake with cream cheese frosting and walnut topping",
+        price: "R260",
+        image: "image/Carrot%20cake.webp"
+      }
+    ];
+
+    function displayProducts(productsToShow) {
+      const productList = document.getElementById("product-list");
+      productList.innerHTML = "";
+
+      if (productsToShow.length === 0) {
+        productList.innerHTML = "<p style='grid-column: 1/-1; text-align: center;'>No products found.</p>";
+        return;
+      }
+
+      productsToShow.forEach(product => {
+        const productCard = document.createElement("article");
+        productCard.className = "product-card";
+        productCard.style.cssText = `
+          background-image: url('${product.image}');
+          background-size: cover;
+          background-position: center;
+          position: relative;
+          min-height: 280px;
+          border-radius: 8px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          color: #fff;
+        `;
+        
+        const overlay = document.createElement("div");
+        overlay.style.cssText = "position:absolute;inset:0;background:rgba(0,0,0,0.4);";
+        productCard.appendChild(overlay);
+        
+        const content = document.createElement("div");
+        content.style.cssText = "position:relative;z-index:1;padding:15px;";
+        content.innerHTML = `
+          <h3 style="margin:0 0 8px;color:#fff;">${product.name}</h3>
+          <p style="font-size:14px;color:#fff;opacity:0.95;margin:0 0 8px;">${product.description}</p>
+          <p style="font-size:18px;font-weight:bold;color:#ffd975;margin:0 0 12px;">${product.price}</p>
+          <a href="enquiry.html?product=${encodeURIComponent(product.name)}" style="display:inline-block;background-color:#d4a574;color:white;padding:10px 20px;text-decoration:none;border-radius:5px;font-weight:bold;">Order Now</a>
+        `;
+        productCard.appendChild(content);
+        productList.appendChild(productCard);
+      });
+    }
+
+    document.getElementById("search").addEventListener("keyup", function() {
+      const searchTerm = this.value.toLowerCase();
+      const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.description.toLowerCase().includes(searchTerm)
+      );
+      displayProducts(filteredProducts);
+    });
+
+    displayProducts(products);
+  </script>
